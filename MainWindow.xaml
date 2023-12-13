@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:laba4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Работа с JSON-файлами" Height="450" Width="900">
+    <TabControl>
+        <TabItem Header="Манифест документа">
+            <StackPanel>
+                <GroupBox Header="Основная информация файла Json" Margin="15">
+                    <StackPanel >
+                        <Label Content="Автор" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.authorFIO}" Margin="15,0"/>
+                        <Label Content="Код дисциплины" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.educationDirectionCode}" Margin="15,0"/>
+                        <Label Content="Название дисциплины" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.educationDirectionTitle}" Margin="15,0"/>
+                        <Label Content="Номер по ГОСТу" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.fgosOrderNumber}" Margin="15,0"/>
+                        <Label Content="Идентификатор" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.id}" Margin="15,0"/>
+                        <Label Content="Уровень образования" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.educationLevelTitle}" Margin="15,0"/>
+                        <Label Content="Полное наименование" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.title}" Margin="15,0"/>
+                        <Label Content="Дата по ГОСТу" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding jsonProfStandart.fgosOrderDate}" Margin="15,0"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="TabItem">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+    </TabControl>
+
+
 </Window>
