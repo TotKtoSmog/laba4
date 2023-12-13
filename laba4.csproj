@@ -56,8 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="JsonClass\Competence.cs" />
+    <Compile Include="JsonClass\Indicator.cs" />
     <Compile Include="JsonClass\ProfessionalCompetenceTaskTable.cs" />
     <Compile Include="JsonClass\Section4.cs" />
+    <Compile Include="JsonClass\UniversalCompetencyRows.cs" />
+    <Compile Include="ProgressIdentifier.cs" />
     <Compile Include="Standart.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

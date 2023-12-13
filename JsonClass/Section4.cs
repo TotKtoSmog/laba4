@@ -7,6 +7,9 @@ namespace laba4.JsonClass
     {
         [DataMember]
         public ProfessionalStandards[] professionalStandards { get; set; }
+        [DataMember] 
         public ProfessionalCompetenceTaskTable[] professionalCompetenceTaskTable { get; set; }
+        [DataMember]
+        public UniversalCompetencyRows[] universalCompetencyRows { get; set; }
     }
 }

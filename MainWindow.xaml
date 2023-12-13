@@ -41,6 +41,36 @@
                 </DataGrid>
             </StackPanel>
         </TabItem>
+        <TabItem Header="Задание №2">
+            <ListBox ItemsSource="{Binding progressIdentifier}" Margin="10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding code}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding title}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding knowLabel}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding knowDescription}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding possessLabel}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding possessDescription}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding canLabel}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding canDescription}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </TabItem>
     </TabControl>
 
 

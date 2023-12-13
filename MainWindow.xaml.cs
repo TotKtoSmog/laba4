@@ -7,18 +7,19 @@ using laba4.JsonClass;
 
 namespace laba4
 {
-    
     public partial class MainWindow : Window
     {
         public string PathJsonFile = @"C:\Users\Totkt\source\repos\laba4\data\file.json";
         public JsonProfStandart jsonProfStandart { get; set; }
         public List<Standart> standart { get; set; }
+        public List<ProgressIdentifier> progressIdentifier { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
             jsonProfStandart = LoadJsonFile(PathJsonFile);
             standart = getStandartInData(jsonProfStandart);
+            progressIdentifier = getProgressIdentifierInData(jsonProfStandart);
             this.DataContext = this;
         }
         public JsonProfStandart LoadJsonFile(string PathJsonFile)
@@ -31,7 +32,6 @@ namespace laba4
             }
             return returnResult;
         }
-
         private List<Standart> getStandartInData(JsonProfStandart jsonProfStandart)
         {
             List<Standart> returnResult = new List<Standart>();
@@ -45,6 +45,25 @@ namespace laba4
                     name = PS.content;
                 }
                 returnResult.Add(new Standart(id, name));
+            }
+            return returnResult;
+        }
+        
+        private List<ProgressIdentifier> getProgressIdentifierInData(JsonProfStandart jsonProfStandart)
+        {
+            List<ProgressIdentifier> returnResult = new List<ProgressIdentifier>();
+            foreach (UniversalCompetencyRows item in jsonProfStandart.content.section4.universalCompetencyRows)
+            {
+                ProgressIdentifier temp = new ProgressIdentifier();
+                temp.code = item.competence.code.Replace("\n",""); 
+                temp.title = item.competence.title.Replace("\n", "");
+                temp.knowLabel = item.indicators[0].content.Split(' ').First().Replace("\n", "");
+                temp.knowDescription = item.indicators[0].content.Replace(temp.knowLabel + " ", "").Replace("\n", "");
+                temp.possessLabel = item.indicators[1].content.Split(' ').First().Replace("\n", "");
+                temp.possessDescription = item.indicators[1].content.Replace(temp.possessLabel + " ", "").Replace("\n", "");
+                temp.canLabel = item.indicators[1].content.Split(' ').First().Replace("\n", "");
+                temp.canDescription = item.indicators[1].content.Replace(temp.canLabel + " ", "").Replace("\n", "");
+                returnResult.Add(temp);
             }
             return returnResult;
         }
