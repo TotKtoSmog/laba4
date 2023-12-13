@@ -31,8 +31,15 @@
                 </GroupBox>
             </StackPanel>
         </TabItem>
-        <TabItem Header="TabItem">
-            <Grid Background="#FFE5E5E5"/>
+        <TabItem Header="Задание №1">
+            <StackPanel>
+                <DataGrid ItemsSource="{Binding standart}" x:Name="EmployeesTable" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,5,0,0">
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Назваание" Binding="{Binding Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
         </TabItem>
     </TabControl>
 

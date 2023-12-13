@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace laba4
+namespace laba4.JsonClass
 {
     [DataContract]
     public class JsonProfStandart
@@ -21,5 +21,7 @@ namespace laba4
         public string title { get; set; }
         [DataMember]
         public string fgosOrderDate { get; set; }
+        [DataMember]
+        public Content content { get; set; }
     }
 }
