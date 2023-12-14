@@ -112,6 +112,25 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </TabItem>
+        <TabItem Header="Задание №4">
+            <StackPanel Margin="15">
+                <StackPanel Orientation="Horizontal">
+                    <ListBox x:Name="ListTerm" ItemsSource="{Binding terms}" SelectionChanged="ListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <DataGrid x:Name="SubjectTable" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="Шифр" Binding="{Binding index}"/>
+                            <DataGridTextColumn Header="Название дисциплины" Binding="{Binding title}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
     </TabControl>
 
 

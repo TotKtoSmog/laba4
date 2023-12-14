@@ -14,6 +14,7 @@ namespace laba4
         public List<Standart> standart { get; set; }
         public List<Subject> subject { get; set; }
         public List<ProgressIdentifier> progressIdentifier { get; set; }
+        public Term[] terms { get; set; }
 
         public MainWindow()
         {
@@ -22,6 +23,8 @@ namespace laba4
             standart = getStandartInData(jsonProfStandart);
             progressIdentifier = getProgressIdentifierInData(jsonProfStandart);
             subject = getSubjectsInfoInData(jsonProfStandart);
+            terms = GetTerms(subject);
+
             this.DataContext = this;
         }
         public JsonProfStandart LoadJsonFile(string PathJsonFile)
@@ -50,7 +53,6 @@ namespace laba4
             }
             return returnResult;
         }
-        
         private List<ProgressIdentifier> getProgressIdentifierInData(JsonProfStandart jsonProfStandart)
         {
             List<ProgressIdentifier> returnResult = new List<ProgressIdentifier>();
@@ -69,7 +71,6 @@ namespace laba4
             }
             return returnResult;
         }
-
         private List<Subject> getSubjectsInfoInData(JsonProfStandart jsonProfStandart)
         {
             List<Subject> returnResult = new List<Subject>();
@@ -91,6 +92,22 @@ namespace laba4
             }
                 
             return returnResult;
+        }
+        
+        private Term[] GetTerms(List<Subject> subject)
+        {
+            const ushort countTerm = 8;
+            Term[] terms = new Term[countTerm];
+            for (ushort i = 0; i < countTerm; i++)
+                terms[i] = new Term($"Семестр №{i + 1}", i, GetSubjectsInTerm(i, subject));
+            return terms;
+        }
+        private List<Subject> GetSubjectsInTerm(ushort trem, List<Subject> subject)
+            => subject.Where(n => n.terms[trem].terms == true).ToList();
+
+        private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            SubjectTable.ItemsSource = terms[ListTerm.SelectedIndex].subject;
         }
     }
 }

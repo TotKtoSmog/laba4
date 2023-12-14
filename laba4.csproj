@@ -69,6 +69,7 @@
     <Compile Include="ProgressIdentifier.cs" />
     <Compile Include="Standart.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="Term.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
