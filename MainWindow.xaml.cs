@@ -12,6 +12,7 @@ namespace laba4
         public string PathJsonFile = @"C:\Users\Totkt\source\repos\laba4\data\file.json";
         public JsonProfStandart jsonProfStandart { get; set; }
         public List<Standart> standart { get; set; }
+        public List<Subject> subject { get; set; }
         public List<ProgressIdentifier> progressIdentifier { get; set; }
 
         public MainWindow()
@@ -20,6 +21,7 @@ namespace laba4
             jsonProfStandart = LoadJsonFile(PathJsonFile);
             standart = getStandartInData(jsonProfStandart);
             progressIdentifier = getProgressIdentifierInData(jsonProfStandart);
+            subject = getSubjectsInfoInData(jsonProfStandart);
             this.DataContext = this;
         }
         public JsonProfStandart LoadJsonFile(string PathJsonFile)
@@ -65,6 +67,29 @@ namespace laba4
                 temp.canDescription = item.indicators[1].content.Replace(temp.canLabel + " ", "").Replace("\n", "");
                 returnResult.Add(temp);
             }
+            return returnResult;
+        }
+
+        private List<Subject> getSubjectsInfoInData(JsonProfStandart jsonProfStandart)
+        {
+            List<Subject> returnResult = new List<Subject>();
+            foreach(Subrows item in jsonProfStandart.content.section5.eduPlan.block1.subrows)
+            {
+                string[] d = item.description.Split('>');
+                string temp = "";
+                foreach (string str in d)
+                {
+                    if (str.IndexOf('<') == -1)
+                    {
+                        temp += str;
+                        continue;
+                    }
+                    temp += str.Remove(str.IndexOf('<'));
+                }
+                returnResult.Add(new Subject(item.index, item.title, temp,
+                    item.competences.Select(n => n.code).ToArray(), item.unitsCost, item.terms));
+            }
+                
             return returnResult;
         }
     }

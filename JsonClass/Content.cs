@@ -9,5 +9,9 @@ namespace laba4.JsonClass
         public string orderNumber {  get; set; }
         [DataMember]
         public Section4 section4 { get; set; }
+        [DataMember]
+        public string orderDateStr { get; set; }
+        [DataMember]
+        public Section5 section5 { get; set; }
     }
 }

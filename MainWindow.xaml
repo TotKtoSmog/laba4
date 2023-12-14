@@ -71,6 +71,47 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </TabItem>
+        <TabItem Header="Задание №3">
+            <ListBox x:Name="listBox" ItemsSource="{Binding subject}" Margin="10">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,5">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding index}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding title}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding purpose}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding purposeDescription}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding unitsCostDescription}" />
+                                <TextBlock Text=" | " />
+                                <TextBlock Text="{Binding unitsCost}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding termsLabel}" />
+                                <TextBlock Text=" | " />
+                                <ListBox x:Name="l" ItemsSource="{Binding terms}" IsEnabled="False">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding terms}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </TabItem>
     </TabControl>
 
 
