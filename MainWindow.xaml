@@ -131,6 +131,27 @@
                 </StackPanel>
             </StackPanel>
         </TabItem>
+        <TabItem Header="Задание №5">
+            <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal">
+                    <ListBox x:Name="ListCourse" ItemsSource="{Binding curseInfo}" SelectionChanged="ListCourse_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding curseName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <DataGrid x:Name="TimelineTable" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="Вид обучения" Binding="{Binding title}"/>
+                            <DataGridTextColumn Header="Продолжительность" Binding="{Binding date}"/>
+                            <DataGridTextColumn Header="Количество недель" Binding="{Binding count}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                
+            </StackPanel>
+        </TabItem>
     </TabControl>
 
 

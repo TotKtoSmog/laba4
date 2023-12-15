@@ -11,5 +11,7 @@ namespace laba4.JsonClass
         public string section5_6 { get; set; }
         [DataMember]
         public EduPlan eduPlan { get; set; }
+        [DataMember]
+        public СalendarPlanTable calendarPlanTable { get; set; }
     }
 }

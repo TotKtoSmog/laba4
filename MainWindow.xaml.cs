@@ -15,7 +15,7 @@ namespace laba4
         public List<Subject> subject { get; set; }
         public List<ProgressIdentifier> progressIdentifier { get; set; }
         public Term[] terms { get; set; }
-
+        public CurseInfo[] curseInfo { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -23,8 +23,8 @@ namespace laba4
             standart = getStandartInData(jsonProfStandart);
             progressIdentifier = getProgressIdentifierInData(jsonProfStandart);
             subject = getSubjectsInfoInData(jsonProfStandart);
-            terms = GetTerms(subject);
-
+            terms = getTerms(subject);
+            curseInfo = getCurseInfos(jsonProfStandart);
             this.DataContext = this;
         }
         public JsonProfStandart LoadJsonFile(string PathJsonFile)
@@ -94,20 +94,34 @@ namespace laba4
             return returnResult;
         }
         
-        private Term[] GetTerms(List<Subject> subject)
+        private Term[] getTerms(List<Subject> subject)
         {
             const ushort countTerm = 8;
             Term[] terms = new Term[countTerm];
             for (ushort i = 0; i < countTerm; i++)
-                terms[i] = new Term($"Семестр №{i + 1}", i, GetSubjectsInTerm(i, subject));
+                terms[i] = new Term($"Семестр №{i + 1}", i, getSubjectsInTerm(i, subject));
             return terms;
         }
-        private List<Subject> GetSubjectsInTerm(ushort trem, List<Subject> subject)
+        private List<Subject> getSubjectsInTerm(ushort trem, List<Subject> subject)
             => subject.Where(n => n.terms[trem].terms == true).ToList();
-
         private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+            =>  SubjectTable.ItemsSource = terms[ListTerm.SelectedIndex].subject;
+        private CurseInfo[] getCurseInfos(JsonProfStandart jsonProfStandart)
         {
-            SubjectTable.ItemsSource = terms[ListTerm.SelectedIndex].subject;
+            int countCurse = jsonProfStandart.content.section5.calendarPlanTable.courses.Count();
+            const string templateCurseName = "Курс";
+            if (countCurse < 1) return null;
+            CurseInfo[] returnResult = new CurseInfo[countCurse];
+
+            for(int i = 0; i < countCurse; i++)
+                returnResult[i] = new CurseInfo($"{templateCurseName} {i + 1}", i,
+                    jsonProfStandart.content.section5.calendarPlanTable.courses[i]);
+            return returnResult;
+        }
+
+        private void ListCourse_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            TimelineTable.ItemsSource = curseInfo[ListCourse.SelectedIndex].content;
         }
     }
 }
